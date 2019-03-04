@@ -104,8 +104,4 @@ public class ProductControllerTest {
 
         verify(productService, times(1)).delete(id);
     }
-
-    @Test
-    public void getLijst() {
-    }
 }
