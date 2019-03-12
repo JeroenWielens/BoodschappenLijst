@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -21,7 +24,12 @@ public class Product {
     @Id
     @GeneratedValue
     private Long id;
+
+    @NotNull
+    @Size(min = 1, max = 25)
     private String naam;
+
+    @Min(0)
     private Integer benodigdeHoeveelheid;
 
     @Builder

@@ -38,4 +38,5 @@ public class ProductServiceImpl implements ProductService {
         productRepository.findAll().forEach(products::add);
         return products;
     }
+
 }

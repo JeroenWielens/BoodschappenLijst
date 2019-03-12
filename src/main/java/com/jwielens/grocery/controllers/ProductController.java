@@ -5,8 +5,11 @@ import com.jwielens.grocery.services.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.Set;
 
 
@@ -41,9 +44,17 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(Product product){
-        Product savedProduct = productService.saveOrUpdate(product);
-        return "redirect:/products/";
+    public String saveProduct(@Valid Product product, BindingResult result, RedirectAttributes redirectAttributes){
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message", "Vul alle velden in");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/products/new";
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Succes");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+            productService.saveOrUpdate(product);
+            return "redirect:/products/";
+        }
     }
 
     @GetMapping("/edit/{id}")
