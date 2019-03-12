@@ -31,4 +31,9 @@ public class BoodschapperServiceImpl implements BoodschapperService {
         boodschapperRepository.save(boodschapper);
         return boodschapper;
     }
+
+    @Override
+    public void delete(Long id) {
+        boodschapperRepository.deleteById(id);
+    }
 }

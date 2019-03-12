@@ -12,4 +12,6 @@ public interface BoodschapperService {
     Boodschapper getBoodschapperById(Long id);
 
     Boodschapper saveBoodschapper(Boodschapper boodschapper);
+
+    void delete(Long id);
 }

@@ -4,9 +4,7 @@ import com.jwielens.grocery.domain.Boodschapper;
 import com.jwielens.grocery.services.BoodschapperService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/sendemail")
@@ -32,6 +30,12 @@ public class BoodschapperController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveBoodschapper(Boodschapper boodschapper){
         Boodschapper savedBoodschapper = boodschapperService.saveBoodschapper(boodschapper);
+        return "redirect:/sendemail";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        boodschapperService.delete(id);
         return "redirect:/sendemail";
     }
 

@@ -30,9 +30,11 @@
         <label>Benodigde hoeveelheid:</label>
         <input type="text" class="form-control" th:field="*{benodigdeHoeveelheid}"/>
 
-        <button type="submit" class="btn btn-primary" style="margin-top:10px;">Opslaan</button>
+        <button type="submit" class="btn btn-primary" style="margin-top:10px; width: 100px">Opslaan</button>
 
     </form>
+
+    <a href="#" th:href="@{'/products'}" class="btn btn-primary" style="margin-top:10px; width: 100px">Annuleren</a>
 </div>
 
 </body>

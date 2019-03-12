@@ -25,7 +25,8 @@
             <!--<th style="width: 50px;">Id</th>-->
             <th style="width: 150px;">Voornaam</th>
             <th style="width: 150px;">Achternaam</th>
-            <th style="width: 50px;">emailadres</th>
+            <th style="width: 50px;">Emailadres</th>
+            <th style="width: 50px">Delete</th>
             <th style="width: 50px">Mail ontvanger</th>
         </tr>
         </thead>
@@ -36,6 +37,7 @@
             <td th:text="${boodschapper.voornaam}">Piet</td>
             <td th:text="${boodschapper.achternaam}">Janssen</td>
             <td th:text="${boodschapper.emailadres}">iets@email.com</td>
+            <td><a href="#" th:href="@{'/sendemail/delete/' + ${boodschapper.id}}">Delete</a></td>
             <td><a href="#" th:href="@{'/sendemail/' + ${boodschapper.id}}">Mail</a></td>
 
         </tr>
@@ -43,6 +45,7 @@
         </tbody>
     </table>
     <a href="#" th:href="@{'/sendemail/new'}" class="btn btn-primary">Add Boodschapper</a>
+    <a href="#" th:href="@{'/products'}" class="btn btn-primary">Back</a>
 </div>
 
 

@@ -49,6 +49,10 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("message", "Vul alle velden in");
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
             return "redirect:/products/new";
+        } else if (productService.checkDuplicates(product)){
+            redirectAttributes.addFlashAttribute("message", "Dit product bestaat al");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            return "redirect:/products/new";
         } else {
             redirectAttributes.addFlashAttribute("message", "Succes");
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");

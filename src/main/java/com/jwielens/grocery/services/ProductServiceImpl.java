@@ -4,8 +4,7 @@ import com.jwielens.grocery.domain.Product;
 import com.jwielens.grocery.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
@@ -37,6 +36,20 @@ public class ProductServiceImpl implements ProductService {
         Set<Product> products = new HashSet<>();
         productRepository.findAll().forEach(products::add);
         return products;
+    }
+
+    @Override
+    public Boolean checkDuplicates(Product product) {
+        Boolean isDup = false;
+        Set<Product> products = new HashSet<>();
+        productRepository.findAll().forEach(products::add);
+
+        for (Product product1 : products) {
+            if (product1.getNaam().equalsIgnoreCase(product.getNaam())){
+                isDup = true;
+            }
+        }
+        return isDup;
     }
 
 }
