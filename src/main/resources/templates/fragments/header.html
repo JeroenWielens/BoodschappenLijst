@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
 
@@ -24,6 +24,11 @@
                 <li><a href="#" th:href="@{/products}">Home</a></li>
                 <li><a href="#" th:href="@{/products/lijst}">Boodschappenlijst</a></li>
                 <li><a href="#" th:href="@{/products/new}">Add Product</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a sec:authorize="isAuthenticated()"  th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
             </ul>
         </div>
     </div>

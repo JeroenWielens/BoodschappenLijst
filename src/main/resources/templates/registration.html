@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create an Account</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <th:block th:include="fragments/headerInc :: head"/>
+</head>
+
+<header th:replace="/fragments/header :: header"></header>
+
+<body>
+
+<div class="container">
+    <form method="post" class="form-signin" th:object="${userForm}" th:action="@{/registration}">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+
+        <h2 class="form-signin-heading">Create your account</h2>
+        <div class="form-group">
+
+            <input type="text" class="form-control" autofocus="autofocus" th:field="*{username}" placeholder="Username">
+            <p th:if="${#fields.hasErrors('username')}" class="label label-danger" th:errors="*{username}">Incorrect Username</p>
+
+            <input type="password" class="form-control" th:field="*{password}" placeholder="Password">
+            <p th:if="${#fields.hasErrors('password')}" class="label label-danger" th:errors="*{password}">Incorrect Password</p>
+
+            <input type="password" class="form-control" th:field="*{passwordConfirm}" placeholder="Confirm Password">
+            <p th:if="${#fields.hasErrors('password')}" class="label label-danger" th:errors="*{passwordConfirm}">Incorrect Password</p>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+        </div>
+
+    </form>
+</div>
+</body>
+
+<th:block th:replace="/fragments/footer :: footer"/>
+</html>
