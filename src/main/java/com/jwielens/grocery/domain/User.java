@@ -11,6 +11,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String emailadres;
 
     @Transient
     private String passwordConfirm;
@@ -57,4 +58,14 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public String getEmailadres() {
+        return emailadres;
+    }
+
+    public void setEmailadres(String emailadres) {
+        this.emailadres = emailadres;
+    }
+
+
 }

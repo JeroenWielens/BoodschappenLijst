@@ -1,5 +1,6 @@
 package com.jwielens.grocery;
 
+import com.jwielens.grocery.errors.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private LoggingAccessDeniedHandler accessDeniedHandler;
+
+    @Autowired
     @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
@@ -30,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/webjars/**", "/css/**", "/registration").permitAll()
+                .antMatchers("/resources/**", "/webjars/**", "/css/**", "/registration", "/test").permitAll()
+                .antMatchers("/users/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
                 .and()
@@ -41,7 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .permitAll();
+                .permitAll()
+
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler);
     }
 
     @Bean

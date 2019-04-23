@@ -45,11 +45,21 @@ public class ProductController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveProduct(@Valid Product product, BindingResult result, RedirectAttributes redirectAttributes){
+
+        String currentPname = "RandomName";
+        Long currentId = product.getId();
+
+        if (currentId != null){
+            Product currentProduct = productService.findById(currentId);
+            String name = currentProduct.getNaam();
+            currentPname = name;
+        }
+
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("message", "Vul alle velden in");
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
             return "redirect:/products/new";
-        } else if (productService.checkDuplicates(product)){
+        } else if ((productService.checkDuplicates(product)) &&  (!currentPname.equals(product.getNaam()))){
             redirectAttributes.addFlashAttribute("message", "Dit product bestaat al");
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
             return "redirect:/products/new";
