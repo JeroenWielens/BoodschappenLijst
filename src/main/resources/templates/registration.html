@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Create an Account</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
     <th:block th:include="fragments/headerInc :: head"/>
 </head>
 
@@ -23,6 +22,9 @@
 
             <input type="text" class="form-control" autofocus="autofocus" th:field="*{username}" placeholder="Username">
             <p th:if="${#fields.hasErrors('username')}" class="label label-danger" th:errors="*{username}">Incorrect Username</p>
+
+            <input type="text" class="form-control" autofocus="autofocus" th:field="*{emailadres}" placeholder="Emailadres">
+            <p th:if="${#fields.hasErrors('emailadres')}" class="label label-danger" th:errors="*{emailadres}">Wrong format emailadress</p>
 
             <input type="password" class="form-control" th:field="*{password}" placeholder="Password">
             <p th:if="${#fields.hasErrors('password')}" class="label label-danger" th:errors="*{password}">Incorrect Password</p>

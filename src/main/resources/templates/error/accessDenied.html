@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Denied</title>
+
+    <th:block th:include="fragments/headerInc :: head"/>
+
+</head>
+
+<header th:replace="/fragments/header :: header"></header>
+
+<body>
+
+<h3 style="font-weight:bold; margin-left: 10%; margin-top: 10%;">Sorry, you do not have permission to view this page. <span class="glyphicon glyphicon-thumbs-down"></span></h3>
+<h4 style="margin-left:15%;">You shall not pass!</h4>
+
+</body>
+
+<th:block th:replace="/fragments/footer :: footer"/>
+
+</html>

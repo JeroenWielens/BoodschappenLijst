@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <th:block th:include="fragments/headerInc :: head"></th:block>
@@ -8,8 +8,10 @@
 </head>
 
 <footer class="panel-footer  navbar-fixed-bottom navbar-default font-small blue pt-4" style="background-color:blue;" th:fragment="footer">
-    <div class="footer-copyright text-center py-3 text-muted">
-        © 2019 Copyright: Jeroen Wielens
+    <div class="text-center py-3 text-muted">
+        Logged in as:
+        <span sec:authorize="isAuthenticated()" th:text="${#httpServletRequest.userPrincipal.name}">naam</span>
+        <span sec:authorize="!isAuthenticated()">Not logged in yet</span>
     </div>
 </footer>
 

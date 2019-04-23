@@ -4,38 +4,31 @@
     <meta charset="UTF-8">
     <title>Boodschappers</title>
 
-    <th:block th:include="fragments/headerInc :: head"></th:block>
+    <th:block th:include="fragments/headerInc :: head"/>
 </head>
 <header th:replace="/fragments/header :: header"></header>
-<body style="padding-top:40px; padding-bottom:30px;">
+<body>
 <div class="container-fluid">
     <h2 th:text="'Lijst met Boodschappers'">Lijst met Boodschappers</h2>
     <table class="table table-hover ">
         <thead class="thead-inverse">
         <tr>
-            <!--<th style="width: 50px;">Id</th>-->
-            <th style="width: 150px;">Voornaam</th>
-            <th style="width: 150px;">Achternaam</th>
-            <th style="width: 50px;">Emailadres</th>
-            <th style="width: 50px">Delete</th>
-            <th style="width: 50px">Mail ontvanger</th>
+            <th>Username</th>
+            <th>Emailadres</th>
+            <th>Mail ontvanger</th>
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="boodschapper: ${boodschappers}">
-            <!--<td th:text="${product.id}">1</td>-->
-            <td th:text="${boodschapper.voornaam}">Piet</td>
-            <td th:text="${boodschapper.achternaam}">Janssen</td>
-            <td th:text="${boodschapper.emailadres}">iets@email.com</td>
-            <td><a href="#" th:href="@{'/sendemail/delete/' + ${boodschapper.id}}">Delete</a></td>
-            <td><a href="#" th:href="@{'/sendemail/' + ${boodschapper.id}}">Mail</a></td>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.username}">Piet</td>
+            <td th:text="${user.emailadres}">iets@email.com</td>
+            <td><a href="#" th:href="@{'/sendemail/' + ${user.id}}">Mail</a></td>
 
         </tr>
 
         </tbody>
     </table>
-    <a href="#" th:href="@{'/sendemail/new'}" class="btn btn-primary">Add Boodschapper</a>
     <a href="#" th:href="@{'/products'}" class="btn btn-primary">Back</a>
 </div>
 <th:block th:replace="/fragments/footer :: footer"/>

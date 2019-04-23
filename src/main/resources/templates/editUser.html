@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+
+    <th:block th:include="fragments/headerInc :: head"/>
+
+</head>
+
+<header th:replace="/fragments/header :: header"></header>
+
+<body>
+
+<div class="container-fluid">
+    <h2>Voeg nieuw product toe / pas product aan</h2>
+    <form  th:object="${user}" th:action="@{/users/save}" method="post" class="formInput">
+
+        <label>Username</label>
+        <input type="text" class="form-control" autofocus="autofocus" th:field="*{username}">
+        <p th:if="${message}" class="label label-danger" th:text="${message}" th:class="${'alert ' + alertClass}">Incorrect Username</p>
+
+        <label>Emailadres</label>
+        <input type="text" class="form-control" autofocus="autofocus" th:field="*{emailadres}">
+
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{password}">
+
+
+        <button  type="submit" class="btn btn-primary" style="margin-top:10px; width: 100px">Opslaan</button>
+        <a href="#" th:href="@{'/users'}" class="btn btn-primary" style="margin-top:10px; width: 100px">Annuleren</a>
+
+
+
+
+    </form>
+</div>
+
+</body>
+
+<th:block th:replace="/fragments/footer :: footer"/>
+
+</html>

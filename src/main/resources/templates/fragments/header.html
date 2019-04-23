@@ -24,10 +24,12 @@
                 <li><a href="#" th:href="@{/products}">Home</a></li>
                 <li><a href="#" th:href="@{/products/lijst}">Boodschappenlijst</a></li>
                 <li><a href="#" th:href="@{/products/new}">Add Product</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#" th:href="@{/users}">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a sec:authorize="isAuthenticated()"  th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    <a sec:authorize="!isAuthenticated()"  th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
             </ul>
         </div>

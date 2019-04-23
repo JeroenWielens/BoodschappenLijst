@@ -7,13 +7,13 @@
     <th:block th:include="fragments/headerInc :: head"></th:block>
 </head>
 <header th:replace="/fragments/header :: header"></header>
-<body style="padding-top:40px; padding-bottom:30px;">
+<body>
 
 <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
 
 <div class="container-fluid">
-    <h1>Voeg nieuw product toe / pas product aan</h1>
-    <form  th:object="${product}" th:action="@{/products/save}" method="post">
+    <h2>Voeg nieuw product toe / pas product aan</h2>
+    <form  th:object="${product}" th:action="@{/products/save}" method="post" class="formInput">
 
         <input type="hidden" th:field="*{id}"/>
 
@@ -23,11 +23,12 @@
         <label>Benodigde hoeveelheid:</label>
         <input type="text" class="form-control" th:field="*{benodigdeHoeveelheid}"/>
 
-        <button type="submit" class="btn btn-primary" style="margin-top:10px; width: 100px">Opslaan</button>
+        <button  type="submit" class="btn btn-primary" style="margin-top:10px; width: 100px">Opslaan</button>
+        <a href="#" th:href="@{'/products'}" class="btn btn-primary" style="margin-top:10px; width: 100px">Annuleren</a>
 
     </form>
 
-    <a href="#" th:href="@{'/products'}" class="btn btn-primary" style="margin-top:10px; width: 100px">Annuleren</a>
+
 </div>
 <th:block th:replace="/fragments/footer :: footer"/>
 

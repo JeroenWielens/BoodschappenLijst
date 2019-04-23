@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+
+    <th:block th:include="fragments/headerInc :: head"></th:block>
+
+</head>
+
+<header th:replace="/fragments/header :: header"></header>
+
+<body>
+
+<div class="container-fluid" >
+    <h2 th:text="'List of Users'">List of Users</h2>
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Emailadres</th>
+            <th>Edit User</th>
+            <th>Delete User</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="user: ${users}">
+            <td th:text="${user.id}">1</td>
+            <td th:text="${user.username}">User</td>
+            <td>
+                <table>
+                    <tbody>
+                        <tr th:each="role: ${user.getRoles()}">
+                            <td th:text="${role.name}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td th:text="${user.emailadres}">email</td>
+            <td><a th:if="${user.id != 26 and user.id != 27}" href="#" th:href="@{'/users/edit/' + ${user.id}}">Edit</a></td>
+            <td><a th:if="${user.id != 26 and user.id != 27}" href="#" th:href="@{'/users/delete/' + ${user.id}}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+<th:block th:replace="/fragments/footer :: footer"/>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:text="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bad Request</title>
+
+    <th:block th:include="fragments/headerInc :: head"/>
+
+</head>
+
+<header th:replace="/fragments/header :: header"></header>
+
+<body>
+
+<h3 style="font-weight:bold; margin-left: 10%; margin-top: 10%;" th:text="${error}"><span class="glyphicon glyphicon-ban-circle"></span></h3>
+<h4 style="margin-left:12%;" th:text="${timestamp}"></h4>
+<h4 style="margin-left:12%;" th:text="${path}"></h4>
+<h4 style="margin-left:12%;" th:text="${status}"></h4>
+<h4 style="margin-left:12%;" th:text="${message}"></h4>
+<h4 style="margin-left:12%;" th:text="${exception}"></h4>
+<p style="margin-left: 12%;">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Show Tracktrace
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body" style="margin-left: 12%;">
+        <span th:text="${trace}"></span>
+    </div>
+</div>
+
+</body>
+
+<th:block th:replace="/fragments/footer :: footer"/>
+
+</html>

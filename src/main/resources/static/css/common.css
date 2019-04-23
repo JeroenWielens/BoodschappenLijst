@@ -7,7 +7,6 @@
 body {
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #eee;
 }
 
 .form-signin .form-signin-heading,
@@ -45,4 +44,9 @@ body {
 
 .has-error {
     color: red
+}
+
+.formInput {
+    max-width: 400px;
+    margin:auto;
 }
